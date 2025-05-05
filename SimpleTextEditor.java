@@ -67,12 +67,17 @@ public class SimpleTextEditor extends JFrame implements ActionListener {
                     }
                 }
                 break;
-
+                
             case "Save":
                 if (currentFilePath == null) {
                     int saveResult = fileChooser.showSaveDialog(this);
                     if (saveResult == JFileChooser.APPROVE_OPTION) {
                         currentFilePath = fileChooser.getSelectedFile().getAbsolutePath();
+                        if (!currentFilePath.endsWith(".txt")) {
+                            currentFilePath += ".txt";
+                        }
+                        setTitle("Simple Text Editor - " + new File(currentFilePath).getName());
+
                     } else {
                         return;
                     }
@@ -86,6 +91,17 @@ public class SimpleTextEditor extends JFrame implements ActionListener {
                 break;
 
             case "Exit":
+                int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    if (currentFilePath != null) {
+                        int saveChanges = JOptionPane.showConfirmDialog(this, "Do you want to save changes?", "Save Changes", JOptionPane.YES_NO_CANCEL_OPTION);
+                        if (saveChanges == JOptionPane.YES_OPTION) {
+                            actionPerformed(new ActionEvent(e.getSource(), e.getID(), "Save"));
+                        } else if (saveChanges == JOptionPane.CANCEL_OPTION) {
+                            return;
+                        }
+                    }
+                }
                 System.exit(0);
                 break;
         }
