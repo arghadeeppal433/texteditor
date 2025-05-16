@@ -36,6 +36,13 @@ public class SimpleTextEditor extends JFrame implements ActionListener {
         fileMenu.getItem(2).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         fileMenu.getItem(3).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
         fileMenu.getItem(3).setMnemonic(KeyEvent.VK_Q);
+        fileMenu.getItem(3).setDisplayedMnemonicIndex(0);
+        fileMenu.getItem(0).setMnemonic(KeyEvent.VK_N);
+        fileMenu.getItem(0).setDisplayedMnemonicIndex(0);
+        fileMenu.getItem(1).setMnemonic(KeyEvent.VK_O);
+        fileMenu.getItem(1).setDisplayedMnemonicIndex(0);
+        fileMenu.getItem(2).setMnemonic(KeyEvent.VK_S);
+        fileMenu.getItem(2).setDisplayedMnemonicIndex(0);   
         menuBar.add(fileMenu);
         setJMenuBar(menuBar);
 
